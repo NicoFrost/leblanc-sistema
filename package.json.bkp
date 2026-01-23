@@ -1,0 +1,38 @@
+{
+  "name": "mi-app",
+  "version": "1.0.0",
+  "main": "./src/main.js",
+  "private": true,
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview"
+  },
+  "build": {
+    "appId": "com.midominio.miapp",
+    "directories": {
+      "output": "dist-electron",
+      "app": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ]
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sequelize": "^6.37.1",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.11.1",
+    "@vitejs/plugin-react": "^4.7.0",
+    "baseline-browser-mapping": "^2.9.17",
+    "electron": "^30.5.1",
+    "electron-builder": "^24.0.0",
+    "electron-vite": "^4.0.1",
+    "vite": "^5.0.0"
+  }
+}
