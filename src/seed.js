@@ -14,7 +14,7 @@ const createSeed = async ({ Employee, Building, Expense,Collection, Contract, In
             ]
         );
         
-        const notNeeded = []; // agregar los modelos que no se quieran popular
+        const notNeeded = ["buildings","employees","expenses","contracts","invoices","salaries","collections","payments"]; // agregar los modelos que no se quieran popular
 
         if (buildings.length == 0 && !notNeeded.includes('buildings')) {
             await Building.bulkCreate([
@@ -191,6 +191,7 @@ const createSeed = async ({ Employee, Building, Expense,Collection, Contract, In
                     period: '2025-05',
                     grossAmount: 45000,
                     netAmount: 42000,
+                    date: new Date(),
                     paid: false,
                     state: true,
                 },
@@ -200,6 +201,7 @@ const createSeed = async ({ Employee, Building, Expense,Collection, Contract, In
                     grossAmount: 38000,
                     netAmount: 35000,
                     paid: false,
+                    date: new Date(),
                     state: true,
                 }
             ]);

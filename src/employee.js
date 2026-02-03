@@ -2,7 +2,12 @@ function registerEmployeeIpc(ipcMain,Employee) {
     ipcMain.handle('employee:create', async (event, employeeData) => {
         try {
             const {dataValues: employee} = await Employee.create(employeeData);
-            return { success: true, employee };
+            return { 
+                msg: "Empleado creado", 
+                helpMsg: "Empleado " + employee.name + " creado con éxito",
+                success: true, 
+                employee 
+            };
         } catch (error) {
             console.error('Error creating employee:', error);
         }

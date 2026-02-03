@@ -1,9 +1,15 @@
 const { Sequelize } = require('sequelize');
 const path = require('path');
+const { app } = require('electron');
+
+// En desarrollo usa __dirname, en producción usa userData
+const dbPath = process.env.NODE_ENV === 'development' 
+  ? path.join(__dirname, 'database.sqlite')
+  : path.join(app.getPath('userData'), 'database.sqlite');
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: path.join(__dirname, 'database.sqlite'),
+  storage: dbPath,
   logging: false,
 });
 

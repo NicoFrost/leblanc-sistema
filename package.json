@@ -1,20 +1,22 @@
 {
-  "name": "mi-app",
+  "name": "sistema-empleados",
   "version": "1.0.0",
   "main": "./src/main.js",
+  "author": "Nicolas Gorza",
+  "description": "Sistema de Seguimiento de empleados",
   "private": true,
   "scripts": {
-    "dev": "electron-vite dev",
+    "dev": "set NODE_ENV=development && electron-vite dev",
     "build": "electron-vite build",
-    "preview": "electron-vite preview",
-    "start": "electron-forge start",
+    "preview": "set NODE_ENV=production && electron-vite preview",
+    "start": "set NODE_ENV=production && electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
   "build": {
     "appId": "com.midominio.miapp",
     "directories": {
-      "output": "dist-electron",
+      "output": "out",
       "app": "dist"
     },
     "files": [
@@ -35,7 +37,6 @@
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.11.0",
     "dayjs": "^1.11.15",
-    "dotenv": "^17.2.1",
     "electron-squirrel-startup": "^1.0.1",
     "notistack": "^3.0.2",
     "react": "^19.2.0",
@@ -48,6 +49,7 @@
     "sweetalert2": "^11.22.4"
   },
   "devDependencies": {
+    "dotenv": "^17.2.1",
     "@electron-forge/cli": "^7.11.1",
     "@electron-forge/maker-deb": "^7.11.1",
     "@electron-forge/maker-rpm": "^7.11.1",

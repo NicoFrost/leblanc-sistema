@@ -20,10 +20,10 @@ module.exports = (sequelize) => {
             type: DataTypes.FLOAT,
             allowNull: false
         },
-        // netAmount: {
-        //     type: DataTypes.FLOAT,
-        //     allowNull: false
-        // },
+        date: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
         paid: {
             type: DataTypes.BOOLEAN,
             allowNull: false,

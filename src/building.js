@@ -1,13 +1,18 @@
 function registerBuildingIpc(ipcMain, Building) {
     ipcMain.handle('building:create', async (event, buildingData) => {
-        const building = await Building.create(buildingData);
-        return building;
+        const {dataValues: building} = await Building.create(buildingData);
+
+        return {
+            msg: "Edificio creado", 
+            helpMsg: "Edificio " + building.buildingName + " creado con éxito",
+            success: true,
+            building
+        };
     });
 
     ipcMain.handle('building:get', async () => {
         const buildings = await Building.findAll({ where: { state: true } });
         // console.log(buildings);
-        
         return buildings;
     });
 

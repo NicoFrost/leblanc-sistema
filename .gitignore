@@ -38,3 +38,8 @@ Thumbs.db
 # Coverage
 coverage/
 .nyc_output/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3

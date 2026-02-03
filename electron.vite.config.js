@@ -24,7 +24,7 @@ const rendererRoot = path.join(__dirname, 'src', 'renderer');
 
 export default defineConfig({
   main: {
-    entry: path.join(__dirname, 'src/main/index.js'),
+    entry: path.join(__dirname, 'src/main.js'),
   },
   preload: {
     input: {
@@ -36,7 +36,7 @@ export default defineConfig({
     plugins: [react()],
   },
   build: {
-    outDir: 'dist-electron-2/renderer',
+    outDir: 'out',
     emptyOutDir: true,
     sourcemap: false,
     rollupOptions: {

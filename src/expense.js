@@ -1,7 +1,12 @@
 function registerExpenseIpc(ipcMain,Expense) {
     ipcMain.handle('expense:create', async (event, expenseData) => {
         const {dataValues: expense} = await Expense.create(expenseData);
-        return expense;
+        return {
+            msg: "Gasto creado", 
+            helpMsg: "Gasto " + expense.description + " creado con éxito",
+            success: true,
+            expense
+        };
     });
 
     ipcMain.handle('expense:get', async () => {

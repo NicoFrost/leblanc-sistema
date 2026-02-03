@@ -5,8 +5,8 @@ function registerSalaryIpc(ipcMain, Salary) {
     });
 
     ipcMain.handle('salary:get', async () => {
-        const salaries = await Salary.findAll({where: { state: true }});
-        return salaries;
+        const dataDB = await Salary.findAll({where: { state: true }});
+        return dataDB;
     });
 
     ipcMain.handle('salary:update', async (event, salaryId, salaryData) => {

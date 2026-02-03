@@ -14,8 +14,6 @@ const { registerCollectionIpc } = require('./collection');
 const { registerMethodIpc } = require('./method');
 const { registerSalaryIpc } = require('./salary');
 const { registerPaymentIpc } = require('./payment');
-const { log } = require('console');
-require('dotenv').config()
 
 let win;
 
@@ -24,21 +22,42 @@ function createWindow() {
     width: 900,
     height: 700,
     webPreferences: {
-      preload: path.join(__dirname, './preload/index.js'),
+      preload: path.join(__dirname, 'preload/index.js'),
       // preload: path.join(__dirname, 'preload.js'),
     },
   });
   
+  console.log('NODE_ENV:', process.env.NODE_ENV);
+  console.log('__dirname:', __dirname);
+
   if (process.env.NODE_ENV === 'development') {
+    console.log('Loading from localhost:5173 (DEVELOPMENT MODE)');
     win.loadURL('http://localhost:5173');
   } else {
-    win.loadFile(path.join(__dirname, './renderer/index.html'));
+    // Detecta si está ejecutando desde src o desde out/main
+    let indexPath;
+    if (__dirname.includes('out')) {
+      // Ejecutando desde out/main → ir a out/renderer/index.html
+      indexPath = path.join(__dirname, '../renderer/index.html');
+    } else if (__dirname.includes('src')) {
+      // Ejecutando desde src → ir a src/renderer/index.html
+      indexPath = path.join(__dirname, 'renderer/index.html');
+    } else {
+      // Fallback
+      indexPath = path.join(__dirname, 'renderer/index.html');
+    }
+    console.log('Loading index.html from (PRODUCTION MODE):', indexPath);
+    win.loadFile(indexPath);
   }
 }
 
 app.whenReady().then(async () => {
   try {
+    console.log('🚀 App starting...');
+    console.log('NODE_ENV:', process.env.NODE_ENV);
+    
     db = await initDB(); // Inicializar la base de datos
+    console.log('✅ Database initialized');
 
     // Rpegistrar los manejadores IPC después de inicializar la base de datos
     registerUsersIpc(ipcMain, db.User);
@@ -51,12 +70,18 @@ app.whenReady().then(async () => {
     registerMethodIpc(ipcMain,db.Method);
     registerSalaryIpc(ipcMain, db.Salary);
     registerPaymentIpc(ipcMain, db.Payment, db.Method);
+    console.log('✅ IPC handlers registered');
+    
     // Crear datos de ejemplo
-    await createSeed(db);
+    // await createSeed(db);
+    // console.log('✅ Seed data created');
+    
     // Crear la ventana principal
     await createWindow();
+    console.log('✅ Window created');
   } catch (error) {
-    console.error('Error initializing app:', error);
+    console.error('❌ Error initializing app:', error);
+    console.error(error.stack);
     app.quit();
   }
 });
@@ -64,3 +89,5 @@ app.whenReady().then(async () => {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
+
+
