@@ -14,7 +14,7 @@ const createSeed = async ({ Employee, Building, Expense,Collection, Contract, In
             ]
         );
         
-        const notNeeded = ["buildings","employees","expenses","contracts","invoices","salaries","collections","payments"]; // agregar los modelos que no se quieran popular
+        const notNeeded = ["expenses","contracts","invoices","salaries","collections","payments"]; // agregar los modelos que no se quieran popular
 
         if (buildings.length == 0 && !notNeeded.includes('buildings')) {
             await Building.bulkCreate([
@@ -115,14 +115,14 @@ const createSeed = async ({ Employee, Building, Expense,Collection, Contract, In
         
         if(methods.length == 0 && !notNeeded.includes('methods')){
             await Method.bulkCreate([
-                { type: 'efectivo' },
-                { type: 'transferencia', name: 'Banco del Sol' },
-                { type: 'transferencia', name: 'Cuenta DNI' },
-                { type: 'transferencia', name: 'Mercado Pago' },
-                { type: 'transferencia', name: 'Brubank' },
-                { type: 'transferencia', name: 'Prex' },
-                { type: 'transferencia', name: 'Uala' },
-                { type: 'tarjeta' },
+                { type: 'efectivo', color: '#4caf50' },
+                { type: 'transferencia', name: 'Banco del Sol', color: '#f6ed3d' },
+                { type: 'transferencia', name: 'Cuenta DNI', color: '#1b561a' },
+                { type: 'transferencia', name: 'Mercado Pago', color: '#5b87bb' },
+                { type: 'transferencia', name: 'Brubank', color: '#ff84ff' },
+                { type: 'transferencia', name: 'Prex', color: '#7e0077' },
+                { type: 'transferencia', name: 'Uala', color: '#d14444' },
+                { type: 'tarjeta', color: '#b5b5b5' },
             ]);
 
             console.log("methods created");

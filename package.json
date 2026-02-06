@@ -1,7 +1,7 @@
 {
   "name": "sistema-empleados",
   "version": "1.0.0",
-  "main": "./src/main.js",
+  "main": "./src/main",
   "author": "Nicolas Gorza",
   "description": "Sistema de Seguimiento de empleados",
   "private": true,

@@ -17,7 +17,7 @@ const { registerPaymentIpc } = require('../payment');
 
 let win;
 
-function createWindow() {
+async function createWindow() {
   win = new BrowserWindow({
     width: 900,
     height: 700,
@@ -74,7 +74,7 @@ app.whenReady().then(async () => {
     console.log('✅ IPC handlers registered');
     
     // Crear datos de ejemplo
-    // await createSeed(db);
+    await createSeed(db);
     // console.log('✅ Seed data created');
     
     // Crear la ventana principal

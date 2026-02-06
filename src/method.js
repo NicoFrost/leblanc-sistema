@@ -1,7 +1,11 @@
 function registerMethodIpc(ipcMain, Method) {
     ipcMain.handle('method:create', async (event, methodData) => {
         const method = await Method.create(methodData);
-        return method;
+        return {
+            msg: "Metodo creado", helpMsg: "Metodo " + method.methodName + " creado con éxito", success: !!method,
+            method: method,
+            success: !!method
+        };
     });
 
     ipcMain.handle('method:get', async () => {

@@ -24,7 +24,7 @@ const rendererRoot = path.join(__dirname, 'src', 'renderer');
 
 export default defineConfig({
   main: {
-    entry: path.join(__dirname, 'src/main.js'),
+    entry: path.join(__dirname, 'src/main/index.js'),
   },
   preload: {
     input: {
