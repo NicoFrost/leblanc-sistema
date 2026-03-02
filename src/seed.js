@@ -14,7 +14,8 @@ const createSeed = async ({ Employee, Building, Expense,Collection, Contract, In
             ]
         );
         
-        const notNeeded = ["expenses","contracts","invoices","salaries","collections","payments"]; // agregar los modelos que no se quieran popular
+        // const notNeeded = ["expenses","contracts","invoices","salaries","collections","payments"]; // agregar los modelos que no se quieran popular
+        const notNeeded = ["buildings","employees","expenses","contracts","invoices","salaries","collections","payments"]; // agregar los modelos que no se quieran popular
 
         if (buildings.length == 0 && !notNeeded.includes('buildings')) {
             await Building.bulkCreate([

@@ -4,8 +4,9 @@ const { app } = require('electron');
 
 // En desarrollo usa __dirname, en producción usa userData
 const dbPath = process.env.NODE_ENV === 'development' 
-  ? path.join(__dirname, 'database_2.sqlite')
-  : path.join(app.getPath('userData'), 'database_2.sqlite');
+  ? path.join(__dirname, 'database.sqlite')
+  : path.join(app.getPath('userData'), 'database.sqlite');
+
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
@@ -15,6 +16,7 @@ const sequelize = new Sequelize({
 
 async function initDB() {
   try {
+    console.log('Initializing database at:', dbPath, app.getPath('userData'));
     await sequelize.query('PRAGMA foreign_keys = ON;');
     
     // Importar modelos
