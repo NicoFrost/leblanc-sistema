@@ -8,9 +8,10 @@
   "scripts": {
     "dev": "set NODE_ENV=development && electron-vite dev",
     "build": "electron-vite build",
-    "preview": "set NODE_ENV=production && electron-vite preview",
     "start": "set NODE_ENV=production && electron-forge start",
+    "preview": "set NODE_ENV=production && electron-vite preview",
     "package": "electron-forge package",
+    "publish": "electron-forge publish",
     "make": "electron-forge make"
   },
   "build": {
@@ -49,7 +50,6 @@
     "sweetalert2": "^11.22.4"
   },
   "devDependencies": {
-    "dotenv": "^17.2.1",
     "@electron-forge/cli": "^7.11.1",
     "@electron-forge/maker-deb": "^7.11.1",
     "@electron-forge/maker-rpm": "^7.11.1",
@@ -57,12 +57,14 @@
     "@electron-forge/maker-zip": "^7.11.1",
     "@electron-forge/plugin-auto-unpack-natives": "^7.11.1",
     "@electron-forge/plugin-fuses": "^7.11.1",
+    "@electron-forge/publisher-github": "^7.11.1",
     "@electron/fuses": "^1.0.0",
     "@eslint/js": "^9.13.0",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.7.0",
     "baseline-browser-mapping": "^2.9.17",
+    "dotenv": "^17.2.1",
     "electron": "^30.5.1",
     "electron-vite": "^4.0.1",
     "eslint": "^9.13.0",

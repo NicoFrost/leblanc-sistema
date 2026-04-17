@@ -41,4 +41,17 @@ module.exports = {
       [FuseV1Options.OnlyLoadAppFromAsar]: true,
     }),
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'NicoFrost',
+          name: 'Leblanc_Sistema_b'
+        },
+        prerelease: false,
+        draft: true
+      }
+    }
+  ]
 };
