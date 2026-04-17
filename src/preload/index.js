@@ -2,6 +2,8 @@
 const { contextBridge, ipcRenderer } = require("electron");
 console.log('preload loaded'); // <-- debe verse en DevTools (main window)
 contextBridge.exposeInMainWorld('api', {
+  // Update IPCs
+  updateMessage: (callback) => ipcRenderer.on("updateMessage", callback),
   // User IPCs
   getUsers: () => ipcRenderer.invoke('get-users'),
   addUser: (user) => ipcRenderer.invoke('add-user', user),
